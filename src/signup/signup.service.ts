@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { SignupModel } from './signup.model';
@@ -26,7 +26,12 @@ export class SignupService {
       await newUser.save()
     }
     catch(error){
-      console.log(error)
+      if(error.message.includes('username')){
+        throw new HttpException('username already exist', 404)
+      }
+      if(error.message.includes('email')){
+        throw new HttpException('email already exist', 404)
+      }
     }
   }
 

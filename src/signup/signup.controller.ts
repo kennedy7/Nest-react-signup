@@ -3,7 +3,7 @@ import { SignupService } from './signup.service';
 import { SignupDto } from './dto/signup.dto';
 
 
-@Controller('signup') //http://localhost:8000/signup
+@Controller('signup') //http://localhost:9000/signup
 export class SignupController {
 
     constructor(
